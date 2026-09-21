@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dawna | Solicitor Consultant</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest-deep: #1c3628;
+    --forest: #2c4a37;
+    --sage: #6b8570;
+    --paper: #f6f4ec;
+    --paper-warm: #efece0;
+    --ink: #1e2019;
+    --ink-soft: #4a4d43;
+    --brass: #9c8148;
+    --line: rgba(28, 54, 40, 0.16);
+    --radius: 2px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --paper: #14201a;
+      --paper-warm: #182620;
+      --ink: #ece8dc;
+      --ink-soft: #b9c2b5;
+      --line: rgba(236, 232, 220, 0.16);
+    }
+  }
+  :root[data-theme="dark"] {
+    --paper: #14201a;
+    --paper-warm: #182620;
+    --ink: #ece8dc;
+    --ink-soft: #b9c2b5;
+    --line: rgba(236, 232, 220, 0.16);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    color: var(--ink);
+    margin: 0;
+  }
+
+  a { color: inherit; }
+
+  .wrap {
+    max-width: 1040px;
+    margin: 0 auto;
+    padding: 0 32px;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--paper);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 32px;
+    max-width: 1040px;
+    margin: 0 auto;
+  }
+  .brand {
+    font-family: 'Fraunces', serif;
+    font-size: 1.15rem;
+    letter-spacing: 0.01em;
+  }
+  .brand span { color: var(--forest); }
+  nav { display: flex; gap: 28px; }
+  nav a {
+    text-decoration: none;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    transition: color 0.15s ease;
+  }
+  nav a:hover, nav a:focus-visible { color: var(--forest); }
+  @media (max-width: 640px) {
+    nav { display: none; }
+  }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 96px 0 88px;
+    border-bottom: 1px solid var(--line);
+    position: relative;
+  }
+  .hero-rule {
+    width: 44px;
+    height: 3px;
+    background: var(--brass);
+    margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-size: clamp(2.3rem, 5vw, 3.4rem);
+    line-height: 1.12;
+    max-width: 15ch;
+    letter-spacing: -0.01em;
+  }
+  .hero p.lede {
+    margin-top: 24px;
+    max-width: 46ch;
+    font-size: 1.15rem;
+    color: var(--ink-soft);
+  }
+  .hero-cta {
+    margin-top: 40px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .btn {
+    display: inline-block;
+    padding: 13px 26px;
+    border-radius: var(--radius);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: transform 0.15s ease, background 0.15s ease;
+  }
+  .btn-primary {
+    background: var(--forest);
+    color: var(--paper);
+  }
+  .btn-primary:hover { background: var(--forest-deep); }
+  .btn-secondary {
+    border: 1px solid var(--line);
+    color: var(--ink);
+  }
+  .btn-secondary:hover { border-color: var(--forest); color: var(--forest); }
+
+  /* ---------- Practice areas ---------- */
+  .section {
+    padding: 80px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .section-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 24px;
+    margin-bottom: 48px;
+    flex-wrap: wrap;
+  }
+  .section-head h2 {
+    font-size: 1.9rem;
+  }
+  .section-head p {
+    max-width: 40ch;
+    color: var(--ink-soft);
+    font-size: 0.98rem;
+  }
+
+  .services {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1px;
+    background: var(--line);
+    border: 1px solid var(--line);
+  }
+  @media (max-width: 700px) {
+    .services { grid-template-columns: 1fr; }
+  }
+  .service {
+    background: var(--paper);
+    padding: 36px 36px 32px;
+  }
+  .service h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+  .service p {
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+    margin: 0;
+  }
+  .service-wide {
+    grid-column: 1 / -1;
+  }
+
+  /* ---------- About ---------- */
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 68ch;
+  }
+  .about-content p {
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .about-subhead {
+    font-size: 1.3rem;
+    margin-top: 12px;
+    padding-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+
+  /* ---------- Background & recognition ---------- */
+  .background .section-head p { max-width: 52ch; }
+  .background-items {
+    display: grid;
+    gap: 0;
+  }
+  .background-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 28px;
+    padding: 26px 0;
+    border-top: 1px solid var(--line);
+  }
+  .background-item:last-child { border-bottom: 1px solid var(--line); }
+  @media (max-width: 640px) {
+    .background-item { grid-template-columns: 1fr; gap: 6px; }
+  }
+  .background-item .year {
+    font-family: 'Fraunces', serif;
+    color: var(--forest);
+    font-size: 1.05rem;
+    padding-top: 1px;
+  }
+  .background-item h3 {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+  }
+  .background-item p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 0.95rem;
+    max-width: 56ch;
+  }
+
+  /* ---------- Approach ---------- */
+  .approach-list {
+    display: grid;
+    gap: 0;
+  }
+  .approach-item {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 32px;
+    padding: 28px 0;
+    border-top: 1px solid var(--line);
+  }
+  .approach-item:last-child { border-bottom: 1px solid var(--line); }
+  @media (max-width: 640px) {
+    .approach-item { grid-template-columns: 1fr; gap: 8px; }
+  }
+  .approach-item h3 {
+    font-size: 1.05rem;
+    color: var(--forest);
+  }
+  .approach-item p {
+    margin: 0;
+    color: var(--ink-soft);
+    max-width: 58ch;
+  }
+
+  /* ---------- Contact ---------- */
+  .contact {
+    padding: 88px 0 96px;
+    border-bottom: none;
+  }
+  .contact-inner {
+    background: var(--forest-deep);
+    color: var(--paper-warm);
+    border-radius: var(--radius);
+    padding: 56px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+  }
+  @media (max-width: 700px) {
+    .contact-inner { grid-template-columns: 1fr; padding: 40px 28px; }
+  }
+  .contact-inner h2 {
+    color: var(--paper-warm);
+    font-size: 1.9rem;
+    max-width: 14ch;
+  }
+  .contact-inner p {
+    color: rgba(246, 244, 236, 0.75);
+    margin-top: 16px;
+    max-width: 42ch;
+  }
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    justify-content: center;
+  }
+  .contact-row {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    border-bottom: 1px solid rgba(246, 244, 236, 0.18);
+    padding-bottom: 14px;
+  }
+  .contact-row span.label {
+    font-size: 0.8rem;
+    color: rgba(246, 244, 236, 0.55);
+  }
+  .contact-row a, .contact-row span.value {
+    color: var(--paper-warm);
+    text-decoration: none;
+    font-size: 1.02rem;
+  }
+  .contact-row a:hover { color: var(--brass); }
+
+  /* ---------- Privacy ---------- */
+  .privacy {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .privacy h2 {
+    font-size: 1.15rem;
+    margin-bottom: 14px;
+  }
+  .privacy p {
+    color: var(--ink-soft);
+    max-width: 62ch;
+    font-size: 0.92rem;
+    margin: 0;
+  }
+
+  footer {
+    padding: 32px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+  footer a {
+    color: var(--ink-soft);
+    text-decoration: underline;
+  }
+  footer a:hover { color: var(--forest); }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+  }
+
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid var(--forest);
+    outline-offset: 2px;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="brand">Dawna <span>Conrad</span></div>
+    <nav>
+      <a href="#services">Practice areas</a>
+      <a href="#about">About</a>
+      <a href="#approach">How I work</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-rule"></div>
+    <h1>Business law, on a consultancy basis.</h1>
+    <p class="lede">I'm a solicitor specialising in commercial property and corporate and commercial law, working with firms and businesses that need experienced capacity without a permanent hire.</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-primary">Get in touch</a>
+      <a href="#services" class="btn btn-secondary">See practice areas</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Practice areas</h2>
+      <p>Independent consultancy support across commercial and regulatory matters, brought in as and when a firm or business needs it.</p>
+    </div>
+    <div class="services">
+      <div class="service">
+        <h3>Corporate &amp; Commercial</h3>
+        <p>Business and share transactions, commercial agreements, collaboration agreements and general commercial support.</p>
+      </div>
+      <div class="service">
+        <h3>Regulatory &amp; Compliance</h3>
+        <p>Advising herbal medicine practitioners, practices and wholesalers on sector-specific compliance, including website and business communications and the regulatory framework surrounding their work.</p>
+      </div>
+      <div class="service">
+        <h3>Intellectual Property &amp; Trade Marks</h3>
+        <p>IP and trade mark-related commercial support, informed by my first-hand experience of developing and patenting products, registering trade marks and commercialising products.</p>
+      </div>
+      <div class="service">
+        <h3>Interim &amp; Overflow Capacity</h3>
+        <p>Locum cover for gardening leave, handovers or busy periods, working within a law firm's own caseload and under that firm's regulatory arrangements.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Law, informed by real life</h2>
+    </div>
+    <div class="about-content">
+      <p>My path into law grew out of my own experience. Having studied business, built and developed businesses of my own, and navigated the planning system to build my own home, I realised that what I'd learned along the way was something I could put to use helping others.</p>
+      <p>That experience started early. In my twenties I lived and worked on my own 22-acre organic growing farm, where I spent several years navigating planning applications and appeals before finally securing permission and building my own home there.</p>
+      <p>I'd already studied business for two years at college, and went on to put that learning firmly into practice. I established and grew my own enterprises, developed and patented products, registered trademarks, and dealt first-hand with manufacturing, commercial relationships and the everyday realities of making a business work.</p>
+      <p>That early work won national recognition, including the NatWest Bank/National Farmers' Union Venturecash Business Person of the Year title and the Country Living/Calor Gas Small Rural Business Award, selected from more than 250 businesses across the UK. It brought press and broadcast coverage, including the Financial Times, The Times, The Telegraph and Country Living.</p>
+      <p>During that time I was widowed, before the house-building project was finished, and in the years that followed my interests turned increasingly towards wellbeing and the ways people form and break patterns of behaviour. That experience inspired Peak State, my concept for a wellbeing app focused on habit-making and habit-breaking. In April 2011 the idea received an UnLtd Millennium Award, funded through the Millennium Awards Trust and the National Lottery. I later sold the concept.</p>
+      <p>In my thirties I took that experience into law. I studied law, trained as an ADR Group Accredited Civil &amp; Commercial Mediator, and qualified as a solicitor. I've now worked in legal practice for more than a decade, across property, commercial and corporate matters, dispute resolution and intellectual property.</p>
+      <p>Those earlier experiences still inform the lawyer I am today. In many of the areas I now assist with, I've been in exactly your position: trying to get a project off the ground, secure permission, protect an idea, develop a product, or simply make a business work.</p>
+      <p>The legal issue is rarely the whole issue. What matters is what you're trying to achieve, and how the law can help you get there.</p>
+      <h3 class="about-subhead">Health and law</h3>
+      <p>Alongside my legal work, I'm now studying medical herbalism, bringing another long-standing interest into my professional life. It's an unusual combination of skills: an understanding of both the living energy of things and the structures that give them order. Health and law, in other words.</p>
+      <p>That combination lets me support people and businesses working in health, herbal medicine and wellbeing, bringing legal and commercial understanding to the regulatory matters around their work, including business regulation, trademarks and compliance.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section background" id="background">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Background &amp; recognition</h2>
+      <p>I also have first-hand experience of developing, patenting and commercialising products, registering trademarks, and the practical realities of bringing ideas to market.</p>
+    </div>
+    <div class="background-items">
+      <div class="background-item">
+        <div class="year">1993</div>
+        <div>
+          <h3>NatWest Bank/NFU Venturecash Business Person of the Year</h3>
+          <p>Awarded in connection with my natural bedding business, following selection as one of six national finalists.</p>
+        </div>
+      </div>
+      <div class="background-item">
+        <div class="year">1994</div>
+        <div>
+          <h3>Country Living/Calor Gas Small Rural Business Award</h3>
+          <p>Winner of the national award, selected from more than 250 small rural businesses across the UK.</p>
+        </div>
+      </div>
+      <div class="background-item">
+        <div class="year">2011</div>
+        <div>
+          <h3>UnLtd Millennium Award</h3>
+          <p>Awarded on 20 April 2011 for Peak State, my concept for a wellbeing app focused on habit-making and habit-breaking. The concept was subsequently sold.</p>
+        </div>
+      </div>
+      <div class="background-item">
+        <div class="year">2013</div>
+        <div>
+          <h3>ADR Group Accredited Civil &amp; Commercial Mediator</h3>
+          <p>Completed the ADR Group Civil &amp; Commercial Mediator Training Programme.</p>
+        </div>
+      </div>
+      <div class="background-item">
+        <div class="year">2016</div>
+        <div>
+          <h3>Solicitor of England &amp; Wales</h3>
+          <p>Following my LLB and postgraduate legal training, which included business, property, employment and commercial dispute resolution.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="approach">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How I work</h2>
+    </div>
+    <div class="approach-list">
+      <div class="approach-item">
+        <h3>Direct engagement</h3>
+        <p>Tell me where additional legal capacity or specialist support is required. I'll agree the scope, timing and basis of the consultancy before work begins.</p>
+      </div>
+      <div class="approach-item">
+        <h3>Flexible engagement</h3>
+        <p>Single transactions, fixed-term cover, or an ongoing arrangement. Whatever fits the shape of the work.</p>
+      </div>
+      <div class="approach-item">
+        <h3>Clear communication</h3>
+        <p>Regular, plain updates rather than jargon. You should always know exactly where a matter stands.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="contact-inner">
+      <div>
+        <h2>Let's talk about your matter.</h2>
+        <p>Get in touch to discuss a piece of work, cover for a busy period, or an ongoing consultancy arrangement.</p>
+      </div>
+      <div class="contact-details">
+        <div class="contact-row">
+          <span class="label">Email</span>
+          <a href="mailto:dawna@dawnaconrad.com">dawna@dawnaconrad.com</a>
+        </div>
+        <div class="contact-row">
+          <span class="label">Phone</span>
+          <a href="tel:+447827994988">07827 994988</a>
+        </div>
+        <div class="contact-row">
+          <span class="label">Location</span>
+          <span class="value">Somerset, United Kingdom</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="privacy" id="regulatory">
+  <div class="wrap">
+    <h2>Regulatory information</h2>
+    <p>I practise as a freelance solicitor regulated by the Solicitors Regulation Authority (SRA number 579753), providing non-reserved legal services independently of any law firm. Locum work within law firms is carried out under that firm's own regulatory arrangements, separately from this consultancy.</p>
+  </div>
+</section>
+
+<section class="privacy" id="privacy">
+  <div class="wrap">
+    <h2>Privacy</h2>
+    <p>Getting in touch means sending me your name and contact details directly, by email or phone. I only use that information to respond to your enquiry and to correspond with you about any matter you instruct me on, and I don't share it with third parties except where necessary to carry out that work or where the law requires it. This website doesn't use cookies or any other tracking technology, and doesn't collect information automatically. If you'd like to know what information I hold about you, or want it corrected or deleted, just get in touch using the details above.</p>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Dawna Conrad. Solicitor consultant, Somerset. &middot; <a href="#regulatory">Regulatory information</a> &middot; <a href="#privacy">Privacy</a>
+</footer>
+
+</body>
+</html>
